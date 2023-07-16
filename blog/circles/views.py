@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login
 from .forms import LoginForm, RegistrationForm, PostForm
 from .models import Post
 
 def home(request):
-    return render(request, 'circles/templates/home.html')
+    # template = loader.get_template('home.html')
+    return render(request, 'home.html')
 
 def login(request):
     if request.method == 'POST':
@@ -16,12 +17,12 @@ def login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('timeline')
+                return redirect('timeline')  # Redirect to the timeline page
             else:
                 form.add_error(None, 'Invalid username or password')
     else:
         form = LoginForm()
-    return render(request, 'circles/templates/login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
@@ -36,7 +37,7 @@ def register(request):
                 return redirect('timeline')
     else:
         form = RegistrationForm()
-    return render(request, 'circles/templates/register.html', {'form': form})
+    return render(request, 'register.html', {'form': form})
 
 @login_required
 def timeline(request):
@@ -50,4 +51,4 @@ def timeline(request):
             return redirect('timeline')
     else:
         form = PostForm()
-    return render(request, 'circles/templates/timeline.html', {'posts': posts, 'form': form})
+    return render(request, 'timeline.html', {'posts': posts, 'form': form})
