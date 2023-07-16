@@ -5,7 +5,7 @@ from .forms import LoginForm, RegistrationForm, PostForm
 from .models import Post
 
 def home(request):
-    return render(request, 'circles/home.html')
+    return render(request, 'circles/templates/home.html')
 
 def login(request):
     if request.method == 'POST':
@@ -21,7 +21,7 @@ def login(request):
                 form.add_error(None, 'Invalid username or password')
     else:
         form = LoginForm()
-    return render(request, 'circles/login.html', {'form': form})
+    return render(request, 'circles/templates/login.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
@@ -36,7 +36,7 @@ def register(request):
                 return redirect('timeline')
     else:
         form = RegistrationForm()
-    return render(request, 'circles/register.html', {'form': form})
+    return render(request, 'circles/templates/register.html', {'form': form})
 
 @login_required
 def timeline(request):
@@ -50,4 +50,4 @@ def timeline(request):
             return redirect('timeline')
     else:
         form = PostForm()
-    return render(request, 'circles/timeline.html', {'posts': posts, 'form': form})
+    return render(request, 'circles/templates/timeline.html', {'posts': posts, 'form': form})
