@@ -12,6 +12,7 @@ The plan:
 
 
 #Next steps:
+* users need to be saved and allow users to log in again after the app is restarted
 * make it more professional aesthetically -> add a jade green theme
 * allow users to join groups
 * create different types of users 
