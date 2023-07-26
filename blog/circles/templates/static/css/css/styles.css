@@ -1,0 +1,35 @@
+/* Jade Green color */
+:root {
+    --jade-green: #00A86B;
+}
+
+body {
+    background-color: var(--jade-green);
+    color: white;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: var(--jade-green);
+    padding: 20px;
+}
+
+.nav-link {
+    color: white;
+    margin-right: 20px;
+}
+
+.nav-link:hover {
+    color: #b3b3b3;
+}
+
+/* Button styles */
+.btn {
+    background-color: var(--jade-green);
+    color: white;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #008057;
+}
