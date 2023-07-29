@@ -1,13 +1,16 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login
 from .forms import LoginForm, RegistrationForm, PostForm
+
 from .models import Post
+
 
 def home(request):
     return render(request, 'home.html')
+from django.contrib import messages  # Import messages
 
-def login(request):
+def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -16,9 +19,9 @@ def login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 auth_login(request, user)
-                return redirect('timeline')  # Redirect to the template page
+                return redirect('timeline')
             else:
-                form.add_error(None, 'Invalid username or password')
+                messages.error(request, 'Invalid username or password')  # Add this line
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
@@ -59,7 +62,3 @@ def timeline(request, id=None):
             form = PostForm()
         return render(request, 'timeline.html', {'posts': posts, 'form': form})
     
-@login_required
-def template_page(request):
-    # Replace the following line with the actual implementation of your template page
-    return render(request, 'timeline.html')
