@@ -12,33 +12,28 @@
             <div class="col-12">
                 <div class="post">
                     <h2>{{ post.title }}</h2>
-                    <p>{{ post.content }}</p>
+                    {% if post.content %}
+                        <p>{{ post.content }}</p>
+                    {% endif %}
+                    {% if post.video %}
+                        <video controls>
+                            <source src="{{ post.video.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% endif %}
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                    {% endif %}
+                    <p class="author-info">Posted by: {{ post.author.username }}</p>
                     <a href="#" class="btn btn-primary">Read More</a>
                 </div>
             </div>
         {% endfor %}
     </div>
-    <div class="row">
-        <div class="col-12">
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Post</button>
-            </form>
-        </div>
+
+    <!-- Create Post button -->
+    <div class="row justify-content-center">
+        <button onclick="location.href='{% url 'create_post' %}'" type="button" class="btn btn-primary btn-lg-custom">Create Post</button>
     </div>
 </div>
-
-{% endblock %}
-
-{% block css %}
-<style>
-.post {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    text-align: center;
-    background-color: #f1f1f1;
-    margin-bottom: 25px;
-}
-</style>
 {% endblock %}

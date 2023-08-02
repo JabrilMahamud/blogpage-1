@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create Post
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1>Create Post</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control green-outline" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Content:</label>
+                    <textarea class="form-control green-outline" id="content" name="content" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="file">Video or Image:</label>
+                    <input type="file" class="form-control-file" id="file" name="file" accept="image/*,video/*">
+                </div>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -29,3 +29,37 @@
 .btn:hover {
     background-color: #008057;
 }
+
+/* Post styles */
+.post {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    margin-bottom: 25px;
+    position: relative;
+    /* Added for positioning the author */
+}
+
+.author {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: var(--jade-green);
+    font-weight: bold;
+    
+}
+
+.btn-lg-custom {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: 0.3rem;
+}
+
+.green-outline:focus {
+    border-color: #00A86B;
+    /* Jade Green */
+    box-shadow: 0 0 0 0.2rem rgba(0, 168, 107, 0.25);
+    /* Optional: Adds a subtle shadow around the field */
+}

@@ -1,10 +1,10 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as auth_login
 from .forms import LoginForm, RegistrationForm, PostForm
 
 from .models import Post
-
 
 def home(request):
     return render(request, 'home.html')
@@ -45,20 +45,33 @@ def register(request):
 @login_required
 def timeline(request, id=None):
     if id:
-        # An id is provided, display the specified post
         post = get_object_or_404(Post, id=id)
         return render(request, 'timeline.html', {'post': post})
     else:
-        # No id provided, display all posts
         posts = Post.objects.all()
-        if request.method == 'POST':
-            form = PostForm(request.POST)
-            if form.is_valid():
-                post = form.save(commit=False)
-                post.author = request.user
-                post.save()
-                return redirect('timeline')
-        else:
-            form = PostForm()
-        return render(request, 'timeline.html', {'posts': posts, 'form': form})
-    
+        return render(request, 'timeline.html', {'posts': posts})
+
+
+@login_required
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save(commit=False)
+            content = form.cleaned_data['content']
+            file = form.cleaned_data['file']
+
+            if not content and not file:
+                messages.error(request, "Either content or a file is required.")
+                return render(request, 'create_post.html')
+
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+
+            return redirect('timeline')
+
+    else:
+        form = PostForm()
+
+    return render(request, 'create_post.html', {'form': form})

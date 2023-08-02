@@ -16,6 +16,9 @@ class RegistrationForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 class PostForm(forms.ModelForm):
+    video = forms.FileField(required=False)  # Add video field
+    image = forms.ImageField(required=False)  # Add image field
+
     class Meta:
         model = Post
         fields = ['title', 'content']
