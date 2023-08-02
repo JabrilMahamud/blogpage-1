@@ -10,13 +10,14 @@ The plan:
 * use many of django's built-in features to learn more about them
 * if I can combine my aws knowledge with this page it would be great
 
-#   completed steps:
+#   Completed steps:
 * make it more professional aesthetically -> add a jade green theme
 * created a timeline page
+* users can post video's with a title 
 
 # CURRENT ISSUES:
-USERS NOT BEING SAVED ON RESTART-> IT AUTO-LOGS IN SO THIS IS CAUSING THE ISSUE.
-
+USERS NOT BEING SAVED ON RESTART-> IT AUTO-LOGS IN SO THIS MIGHT BE AFFECTING THE ISSUE.
+CANNOT DISPLAY PICTURES ON THE TIMELINE
 
 # Next steps:
 * 1 allow people to post pictures and videos
