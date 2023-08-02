@@ -15,14 +15,14 @@ The plan:
 * created a timeline page
 
 # CURRENT ISSUES:
-USERS NOT BEING SAVED ON RESTART?
+USERS NOT BEING SAVED ON RESTART-> IT AUTO-LOGS IN SO THIS IS CAUSING THE ISSUE.
 
 
 # Next steps:
-* users need to be saved and allow users to log in again after the app is restarted
-* allow users to join groups
-* create different types of users 
-* create a timeline that can sort posts by different features
+* 1 allow people to post pictures and videos
+* 2 create different types of users
+* 3 allow users to join groups 
+* 4 create a timeline that can sort posts by different features
 
 
 # Types of users:
